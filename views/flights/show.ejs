@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= flight.title %></title>
+  </head>
+  <body>
+    <section>
+      <div>
+        Airline:
+        <div><%=flight.airline %></div>
+      </div>
+      <div>
+        Airport:
+        <div><%= flight.airport %></div>
+      </div>
+
+      <div>
+        Flight Number:
+        <div><%= flight.flightNo %></div>
+      </div>
+
+      <div>
+        Departure Time:
+        <div><%= flight.departs %></div>
+      </div>
+  
+
+    </section>
+ 
+  <!-- add destination -->
+  
+<% if(flight.destinations.length) { %> 
+       <h4>New destination</h4>
+    <ul>
+    <% flight.destinations.forEach(function (f){ %>
+  
+      <li> <%= f.airport %> </li>
+      <li><%= f.arrival %> </li>
+    
+   <% }); %> 
+  <% }  else { %> 
+      <h3>Please enter a destination</h3>
+  <% } %> 
+  <br><br><br>
+   <ul>
+      <%tickets.forEach(t => { %>
+         <li> <%= t.seat %> </li>
+         <%= t.price %> 
+      <% }) %>
+
+   </ul>
+   <button><a href="/flights/<%= flight.id %>/tickets/news">Create Ticket</a></button>
+
+  <br><br> <br>
+  <h1>Destination</h1>
+     <form  method="POST"  action="/flights/<%=flight._id%>/destinations">
+       <label>
+        Airport:
+        <select name="airport">
+         <option value="DEN" selected>DEN</option>
+         <option value="ATL">ATL</option>
+         <option value="DFW">DFW</option>
+         <option value="SF0">SFO</option>
+         <option value="LA">LA</option>
+       </select>
+       </label>
+       <br><br>
+       <label>
+         Arrival Date:
+         <input type="datetime-local" name="arrival" required>
+       </label>
+       <input type="submit" value="Add destination">
+     </form>
+
+  
+  </body>
+</html>
