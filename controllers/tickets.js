@@ -1,6 +1,5 @@
-
 const Ticket = require("../models/ticket");
-const Flight = require("../models/flight")
+const Flight = require("../models/flight");
 //Modify
 
 module.exports = {
@@ -9,14 +8,17 @@ module.exports = {
 }; //here to export modules
 
 function newTicket(req, res) {
-  flightId = req.params.id
-  res.render("/tickets/news", flightId);
+  let flightId = req.params.id;
+  // res.send("Hello ")
+  res.render("tickets/new", { flightId });
+  //second arguments is always an object
 }
 
 function create(req, res) {
-  flightId = req.params.id
-  req.body.flight = flightId
-  Ticket.create(ticket, err => {
-      res.redirect(`/flights/${flightId}`)
-})
+  flightId = req.params.id;
+  req.body.flight = flightId;
+  console.log(flightId);
+  Ticket.create(req.body, function (ticket, err) {  //
+    res.redirect(`/flights/${flightId}`);
+  });
 }

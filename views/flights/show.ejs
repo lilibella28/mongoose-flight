@@ -7,7 +7,7 @@
     <title><%= flight.title %></title>
   </head>
   <body>
-    <section>
+    <section class="table table-hover">
       <div>
         Airline:
         <div><%=flight.airline %></div>
@@ -41,10 +41,14 @@
       <li><%= f.arrival %> </li>
     
    <% }); %> 
+    </ul>
   <% }  else { %> 
       <h3>Please enter a destination</h3>
   <% } %> 
   <br><br><br>
+
+  
+<% if(tickets.length) {%> 
    <ul>
       <%tickets.forEach(t => { %>
          <li> <%= t.seat %> </li>
@@ -52,7 +56,13 @@
       <% }) %>
 
    </ul>
-   <button><a href="/flights/<%= flight.id %>/tickets/news">Create Ticket</a></button>
+
+  <% } else { %> 
+     <h3>Not ticket yet</h3>
+  <% } %> 
+
+     
+   <button><a href="/flights/<%= flight.id %>/tickets/new">Create Ticket</a></button>
 
   <br><br> <br>
   <h1>Destination</h1>
