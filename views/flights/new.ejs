@@ -29,8 +29,8 @@
     <form action="/flights" method="POST" class="container col s6">
       <div class="input-field">
         <i class="material-icons prefix">flight</i>
-          <input type="text" name="airline" />
-          <label for="airline">   Airline:  </label>
+          <input type="text" name="airline"  class="validate" required/>
+          <label data-error="Invalid" data-success="Valid" for="airline">   Airline:  </label>
       </div>
 
       <div class="input-field"> 

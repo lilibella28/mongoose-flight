@@ -3,88 +3,102 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title><%= flight.title %></title>
   </head>
   <body>
-    <section class="table table-hover">
-      <div>
-        Airline:
-        <div><%=flight.airline %></div>
-      </div>
-      <div>
-        Airport:
-        <div><%= flight.airport %></div>
-      </div>
 
-      <div>
-        Flight Number:
-        <div><%= flight.flightNo %></div>
-      </div>
-
-      <div>
-        Departure Time:
-        <div><%= flight.departs %></div>
-      </div>
-  
-
-    </section>
+    <header >
  
-  <!-- add destination -->
-  
-<% if(flight.destinations.length) { %> 
-       <h4>New destination</h4>
-    <ul>
-    <% flight.destinations.forEach(function (f){ %>
-  
-      <li> <%= f.airport %> </li>
-      <li><%= f.arrival %> </li>
+      <div class="right-align">
+        <a href="/flights" class=
+        "btn">All flights</a>
+        <a href="/flights/new" class=
+            "btn">New flights</a>
+      </div>
+           
     
-   <% }); %> 
-    </ul>
-  <% }  else { %> 
+    </header>
+    <h1 class="center-align">Flight Details</h1 cla>
+    <section class="container">
+      <div>Airline: <%=flight.airline %></div>
+
+      <div>Airport: <%= flight.airport %></div>
+
+      <div>Flight Number: <%= flight.flightNo %></div>
+
+      <div>Departure Time: <%= flight.departs %></div>
+    </section>
+
+    <!-- add destination -->
+    <section class="container">
+      <% if(flight.destinations.length) { %>
+      <h4 class="green-text">New destination</h4>
+      <ul>
+        <% flight.destinations.forEach(function (f){ %>
+
+        <li>Airport: <%= f.airport %></li>
+        <li> Arrival Date: <%= f.arrival %></li>
+
+        <% }); %>
+      </ul>
+      <% } else { %>
       <h3>Please enter a destination</h3>
-  <% } %> 
-  <br><br><br>
+      <% } %>
+    </section>
 
-  
-<% if(tickets.length) {%> 
-   <ul>
-      <%tickets.forEach(t => { %>
-         <li> <%= t.seat %> </li>
-         <%= t.price %> 
-      <% }) %>
+    <section class="container">
+      <% if(tickets.length) {%>
+      <ul>
+        <%tickets.forEach(t => { %>
+        <li>Seat: <%= t.seat %></li>
+       <li>Price:  <%= t.price %> </li> <% }) %>
+      </ul>
 
-   </ul>
+      <% } else { %>
+      <h3>Not ticket yet</h3>
+      <% } %>
 
-  <% } else { %> 
-     <h3>Not ticket yet</h3>
-  <% } %> 
-
+      
+        <a href="/flights/<%= flight.id %>/tickets/new" class="btn">Create Ticket</a>
      
-   <button><a href="/flights/<%= flight.id %>/tickets/new">Create Ticket</a></button>
+    </section>
 
-  <br><br> <br>
-  <h1>Destination</h1>
-     <form  method="POST"  action="/flights/<%=flight._id%>/destinations">
-       <label>
-        Airport:
-        <select name="airport">
-         <option value="DEN" selected>DEN</option>
-         <option value="ATL">ATL</option>
-         <option value="DFW">DFW</option>
-         <option value="SF0">SFO</option>
-         <option value="LA">LA</option>
-       </select>
-       </label>
-       <br><br>
-       <label>
-         Arrival Date:
-         <input type="datetime-local" name="arrival" required>
-       </label>
-       <input type="submit" value="Add destination">
-     </form>
+    <br /><br />
+    <br />
+    <section class="container">
+      <h1>Destination</h1>
+      <form method="POST" action="/flights/<%=flight._id%>/destinations">
+        <label>
+          Airport:
+          <select name="airport">
+            <option value="DEN" selected>DEN</option>
+            <option value="ATL">ATL</option>
+            <option value="DFW">DFW</option>
+            <option value="SF0">SFO</option>
+            <option value="LA">LA</option>
+          </select>
+        </label>
+        <br /><br />
+        <label>
+          Arrival Date:
+          <input type="datetime-local" name="arrival" required />
+        </label>
+        <input type="submit" value="Add destination"  class="btn"/>
+      </form>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  
+    <script>
+      $(document).ready(function () {
+        $("select").formSelect();
+      });
+    </script>
   </body>
 </html>

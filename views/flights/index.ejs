@@ -12,17 +12,17 @@
 </head>
 
 <body>
-    <header class="#42a5f5 blue lighten-1">
-        <div class="cloud cloud1" >
-            <i class="material-icons large">flight_takeoff</i>
-    </div  >
-        <nav class="#42a5f5 blue lighten-1">
-            <a href="/flights/new" class=
-            "right hide-on-med-and-down">New flights</a>
-            <a href="/flights" class=
-            "right hide-on-med-and-down">All flights</a>
-        </nav>
-    </header>
+    <header >
+ 
+        <div class="right-align">
+          <a href="/flights" class=
+          "btn">All flights</a>
+          <a href="/flights/new" class=
+              "btn">New flights</a>
+        </div>
+             
+      
+      </header>
     <h1 class="center-align">Flight schedule</h1>
 
     <table class="highlight centered">
@@ -33,6 +33,7 @@
                 <th>Flight Number</th>
                 <th>Departure Time</th>
                 <th>Flight Details</th>
+                <th>Delete Flight</th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +44,7 @@
                 <td><%= f.flightNo %></td>
                 <td><%= f.departs %></td>
                 <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
+                <td class="red-text"><i class="material-icons prefix">delete</i></td>
             </tr>
 
             <% }); %>
